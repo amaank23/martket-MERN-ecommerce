@@ -1,0 +1,13 @@
+section.best-selling-section.home section.slider .slider-nav {
+  top: -100px;
+}
+section.best-selling-section.home section.slider .slider-nav .prev-btn {
+  left: unset;
+  right: 53px;
+}
+section.best-selling-section.home section.slider .slider-nav .next-btn {
+  right: 0;
+}
+section.best-selling-section.home section.slider {
+  background-color: #fff;
+}

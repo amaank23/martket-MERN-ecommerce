@@ -1,0 +1,25 @@
+section.category-section.home .cat-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+section.category-section.home .cat-container .category-home {
+  box-shadow: 0 0 7px 1px #0000001a;
+  flex-basis: 188px;
+  padding: 27px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+}
+section.category-section.home .cat-container .category-home h3 {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 9px;
+}
+section.category-section.home .cat-container .category-home img {
+  transition: all ease-in 0.2s;
+}
+section.category-section.home .cat-container .category-home a:hover img {
+  transform: scale(1.1);
+}

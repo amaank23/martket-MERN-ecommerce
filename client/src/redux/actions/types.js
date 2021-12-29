@@ -1,0 +1,13 @@
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const FETCH_ADMIN = "FETCH_ADMIN";
+export const LOGOUT = "LOGOUT";
+export const AUTH_ERROR = "AUTH_ERROR";
+export const TOKEN_EXIST = "TOKEN_EXIST";
+export const CATEGORY_ADDED = "CATEGORY_ADDED";
+export const CATEGORY_DELETED = "CATEGORY_DELETED";
+export const GET_CATEGORIES = "GET_CATEGORIES";
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const ADD_PRORUCT = 'ADD_PRODUCT';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';

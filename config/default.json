@@ -1,0 +1,5 @@
+{
+    "mongoURI": "mongodb+srv://amank23:abcd1234@cluster0.uucc3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "localMongoURI": "mongodb://127.0.0.1:27017/AmanBlog",
+    "jwtToken": "my-secret-token"
+}
