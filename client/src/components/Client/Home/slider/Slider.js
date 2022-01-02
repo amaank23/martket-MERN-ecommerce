@@ -19,6 +19,7 @@ const Slider = ({ items, children }) => {
     // }, [active]);
 
 
+
     
     function nextSlide(){
         if(active === (itemsLength - 1)){

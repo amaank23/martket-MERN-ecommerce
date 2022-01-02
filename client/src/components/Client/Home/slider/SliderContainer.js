@@ -13,7 +13,7 @@ const SliderContainer = ({ sliderContainer, sliderItems, right, children, setIte
     }
     useEffect(() => {
         settingSliderItemsRef();
-    }, [])
+    }, [children])
     return (
             <div style={{ right: right + 'px' }} className="slider-container" ref={(element) => {sliderContainer.current = element;}}>
                 {children}

@@ -377,3 +377,14 @@ section.product-single-page .container .product-info .small-info ul li span {
 .tabs .tabs-heading ul li:hover::before {
   width: 100%;
 }
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+.table-bordered,
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #dee2e6;
+  padding: 13px 26px;
+}

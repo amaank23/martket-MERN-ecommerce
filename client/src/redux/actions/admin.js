@@ -17,7 +17,6 @@ export const loadAdmin = (token) => {
                 type: FETCH_ADMIN,
                 payload: res.data
             });
-            console.log(res.data);
         } catch (err) {
             console.log(err);
             const error = err.response.data.msg;

@@ -1,81 +1,19 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+import { useLocation, useParams } from 'react-router-dom'
 import PageTitleArea from '../header/PageTitleArea'
 import ProductCard from './ProductCard'
 import Sidebar from './Sidebar'
 
-const Products = () => {
+const Products = ({ products }) => {
     
     const totalItemsToShow = 3;
-    const products = [
-        {
-            title: 'New Microscope',
-            price: 59.93,
-            discountedPrice: 56.93,
-            img: 'products-img1.jpg',
-            sale: true,
-        },
-        {
-            title: 'Coronavirus Face Mask',
-            price: 99.01,
-            discountedPrice: 96.87,
-            img: 'products-img2.jpg',
-            sale: true,
-        },
-        {
-            title: 'Protective Gloves',
-            price: 99.23,
-            discountedPrice: 88.23,
-            img: 'products-img3.jpg',
-            sale: true,
-        },
-        {
-            title: 'Medical Mask',
-            price: 49.39,
-            discountedPrice: 40.23,
-            img: 'products-img4.jpg',
-            sale: true,
-        },{
-            title: 'New Microscope',
-            price: 59.93,
-            discountedPrice: 56.93,
-            img: 'products-img1.jpg',
-            sale: true,
-        },
-        {
-            title: 'Coronavirus Face Mask',
-            price: 99.01,
-            discountedPrice: 96.87,
-            img: 'products-img2.jpg',
-            sale: true,
-        },
-        {
-            title: 'Protective Gloves',
-            price: 99.23,
-            discountedPrice: 88.23,
-            img: 'products-img3.jpg',
-            sale: true,
-        },
-        {
-            title: 'asd Mask',
-            price: 49.39,
-            discountedPrice: 40.23,
-            img: 'products-img4.jpg',
-            sale: true,
-        },
-        {
-            title: 'ABCD Mask',
-            price: 49.39,
-            discountedPrice: 40.23,
-            img: 'products-img4.jpg',
-            sale: true,
-        }
-    ]
     const [paginationBtns, setPaginationBtns] = useState(1);
     const [initialPosition, setInitialPosition] = useState(0);
     const [finalPosition, setFinalPosition] = useState(totalItemsToShow);
     useEffect(() => {
         setPaginationBtns(Math.ceil(products.length / totalItemsToShow));
-    }, [])
+    }, [products])
 
     function changePage(num){
         const position = totalItemsToShow * (num - 1);
@@ -141,5 +79,7 @@ const Products = () => {
         </section>
     )
 }
-
-export default Products
+const mapStateToProps = state => ({
+    products: state.product.products
+})
+export default connect(mapStateToProps, null)(Products) 

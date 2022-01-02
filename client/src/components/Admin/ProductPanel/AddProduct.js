@@ -120,13 +120,12 @@ const AddProduct = ({ addProduct, getCategories, categories }) => {
                                             labelId="demo-simple-select-outlined-label"
                                             id="demo-simple-select-outlined"
                                             label="Product Type"
-                                            value="simple-product"
                                         >
                                             <MenuItem value="">
                                                 <em>None</em>
                                             </MenuItem>
                                             <MenuItem value='simple-product'>Simple Product</MenuItem>
-                                            <MenuItem value='variable-product'>Vaiable Product</MenuItem>
+                                            <MenuItem value='variable-product'>Variable Product</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </Box>

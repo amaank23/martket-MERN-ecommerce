@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({ setCartVisible, setSearchBarVisibleToTrueOrFalse }) => {
     const data = [
         {
             name: 'Diagnostic Sets'
@@ -46,14 +46,13 @@ const Navbar = () => {
                             </ul>
                             )}
                         </li>
-                        <li><a href="">Contact</a></li>
                     </ul>
                 </div>
                 <div className='wishlist-cart-search'>
                     <ul>
-                        <li><a href=""><i class="far fa-heart"></i></a></li>
-                        <li><a href=""><i class="fas fa-shopping-cart"></i></a></li>
-                        <li><a href=""><i class="fas fa-search"></i></a></li>
+                        <li><Link to="/wishlist"><i class="far fa-heart"></i></Link></li>
+                        <li><a href="" onClick={(e) => setCartVisible(e)}><i class="fas fa-shopping-cart"></i></a></li>
+                        <li><a href="" onClick={setSearchBarVisibleToTrueOrFalse}><i class="fas fa-search"></i></a></li>
                     </ul>
                 </div>
             </nav>

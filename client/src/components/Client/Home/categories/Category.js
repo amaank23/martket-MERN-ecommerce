@@ -1,16 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const Category = ({ name, img }) => {
+const Category = ({ name, id }) => {
     return (
         <div className='category-home'>
-            <a href="">
-                <div className="cat-img">
-                    <img src={require('./img/' + img).default} alt="" />
-                </div>
+            <Link to={"/products?category_id=" + id}>
                 <div className="cat-heading">
                     <h3>{name}</h3>
                 </div>
-            </a>
+            </Link>
         </div>
     )
 }

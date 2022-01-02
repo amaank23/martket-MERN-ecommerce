@@ -1,0 +1,13 @@
+.section-heading h2::after {
+  content: '';
+  width: 99px;
+  height: 1px;
+  background-color: var(--primary);
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+}
+section.wishlist-page .container {
+  padding-top: 35px;
+  padding-bottom: 73px;
+}

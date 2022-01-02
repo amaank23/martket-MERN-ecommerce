@@ -1,4 +1,6 @@
-import React from 'react'
+import { connect } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import PageTitleArea from '../header/PageTitleArea'
 import Slider from '../Home/slider/Slider'
 import SliderItems from '../Home/slider/SliderItems'
@@ -6,41 +8,35 @@ import ColorSwitch from './ColorSwitch'
 import SizeSwitch from './SizeSwitch'
 import Tabs from './Tabs'
 
-const ProductSingle = () => {
-    const products = [
-        {
-            img: 'products-img1.jpg'
-        },
-        {
-            img: 'products-img2.jpg'
-        },
-        {
-            img: 'products-img3.jpg'
-        },
-        {
-            img: 'products-img4.jpg'
-        }
-    ]
+const ProductSingle = ({ products }) => {
+    const { id } =  useParams();
+    const product = products.filter(product => product._id === id)[0];
+    // useEffect(() => {
+        
+    // }, [])
     return (
         <section className='product-single-page'>
             <PageTitleArea title="Medical Mask" />
             <div className="container">
                 <div className="product-gallery">
                     <Slider>
-                        {products.map((item, index) => (
+                            <SliderItems width={'100%'} height={'100%'}>
+                                <img src={product.featuredImage.imgUrl} alt="" />
+                            </SliderItems>
+                        {product.imageGallery.map((item, index) => (
                             <SliderItems key={index} width={'100%'} height={'100%'}>
-                                <img src={require('./img/' + item.img).default} alt="" />
+                                <img src={item.imgUrl} alt="" />
                             </SliderItems>
                         ))}
                     </Slider>
                 </div>
                 <div className="product-info">
                     <div className="title">
-                        <h2>Medical Mask</h2>
+                        <h2>{ product.productName }</h2>
                     </div>
                     <div className="price">
                         <span className="old-price">$49.39</span>
-                        <span className="new-price">$46.92</span>
+                        <span className="new-price">{product.price}</span>
                     </div>
                     <div className="small-info">
                         <ul>
@@ -66,4 +62,8 @@ const ProductSingle = () => {
     )
 }
 
-export default ProductSingle
+const mapStateToProps = (state) => ({
+    products: state.product.products
+})
+
+export default  connect(mapStateToProps, null)(ProductSingle)

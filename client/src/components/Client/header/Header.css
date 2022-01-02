@@ -95,3 +95,7 @@ header.header nav ul li ul {
 
   width: 152px;
 }
+.searchbar input.form-control {
+  box-shadow: 0 0 4px 2px #0000002b;
+  margin-bottom: 2px;
+}

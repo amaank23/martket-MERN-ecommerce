@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router';
 import Home from './Home/Home';
 import ClientLayout from '../Layout/ClientLayout';
@@ -6,8 +6,17 @@ import Header from './header/Header';
 import Products from './Products/Products';
 import ClientAuth from './ClientAuth/ClientAuth';
 import ProductSingle from './Products/ProductSingle';
+import Wishlist from './Wishlist/Wishlist';
+import Checkout from './Checkout/Checkout';
+import { connect } from 'react-redux';
+import { getProduct } from '../../redux/actions/products';
+import { getCategories } from '../../redux/actions/category'
 
-const ClientView = () => {
+const ClientView = ({ getProduct, getCategories }) => {
+    useEffect(() => {
+        getProduct();
+        getCategories();
+    }, [])
     return (
         <>
             <Header />
@@ -23,8 +32,16 @@ const ClientView = () => {
                 <Route exact path="/product/:id">
                     <ProductSingle />
                 </Route>
+                <Route exact path="/wishlist">
+                    <Wishlist />
+                </Route>
+                <Route exact path="/checkout">
+                    <Checkout />
+                </Route>
         </>
     )
 }
 
-export default ClientView
+
+
+export default connect(null, { getProduct, getCategories })(ClientView)

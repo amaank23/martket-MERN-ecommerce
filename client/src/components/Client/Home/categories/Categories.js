@@ -2,29 +2,7 @@ import React from 'react'
 import "./Categories.css"
 import Category from './Category'
 
-const Categories = () => {
-    const data = [
-        {
-            name: 'Diagnostic Sets',
-            img: 'categories-img1.png'
-        },
-        {
-            name: 'Antiseptic',
-            img: 'categories-img2.png'
-        },
-        {
-            name: 'Microscope',
-            img: 'categories-img3.png'
-        },
-        {
-            name: 'Pharmacy',
-            img: 'categories-img4.png'
-        },
-        {
-            name: 'Accessories',
-            img: 'categories-img5.png'
-        },
-    ]
+const Categories = ({ data }) => {
     return (
         <section className="category-section home">
             <div className="container">
@@ -33,7 +11,7 @@ const Categories = () => {
                 </div>
                 <div className="cat-container">
                     {data.map((category, index) => (
-                        <Category key={index} name={category.name} img={category.img} />
+                        <Category key={index} name={category.categoryName} id={category._id}/>
                     ))}
                 </div>
             </div>
