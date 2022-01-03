@@ -17,6 +17,17 @@
   color: #000;
   padding: 16px 35px;
   position: relative;
+  width: 100%;
+  margin: 23px 39px;
+  border-radius: 10px;
+
+  overflow-y: scroll;
+}
+.cart-container .cart-content .cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  font-weight: 600;
 }
 .cart .cart-container h3 {
   font-size: 18px;

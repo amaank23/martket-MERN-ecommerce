@@ -8,14 +8,18 @@ import ClientAuth from './ClientAuth/ClientAuth';
 import ProductSingle from './Products/ProductSingle';
 import Wishlist from './Wishlist/Wishlist';
 import Checkout from './Checkout/Checkout';
+import ClientPrivateRoute from '../ClientPrivateRoute';
+import store from '../../redux/store';
+import { TOKEN_EXIST_CLIENT } from '../../redux/actions/types';
+import { loadCustomer } from '../../redux/actions/customer';
 import { connect } from 'react-redux';
-import { getProduct } from '../../redux/actions/products';
-import { getCategories } from '../../redux/actions/category'
 
-const ClientView = ({ getProduct, getCategories }) => {
+const ClientView = ({ loadCustomer }) => {
     useEffect(() => {
-        getProduct();
-        getCategories();
+        if(localStorage.token_client){
+            store.dispatch({type: TOKEN_EXIST_CLIENT});
+            loadCustomer(localStorage.token_client);
+        }
     }, [])
     return (
         <>
@@ -35,13 +39,13 @@ const ClientView = ({ getProduct, getCategories }) => {
                 <Route exact path="/wishlist">
                     <Wishlist />
                 </Route>
-                <Route exact path="/checkout">
+                <ClientPrivateRoute exact path="/checkout">
                     <Checkout />
-                </Route>
+                </ClientPrivateRoute>
         </>
     )
 }
 
 
 
-export default connect(null, { getProduct, getCategories })(ClientView)
+export default connect(null, { loadCustomer })(ClientView)

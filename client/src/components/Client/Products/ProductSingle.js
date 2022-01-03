@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import PageTitleArea from '../header/PageTitleArea'
@@ -7,14 +7,24 @@ import SliderItems from '../Home/slider/SliderItems'
 import ColorSwitch from './ColorSwitch'
 import SizeSwitch from './SizeSwitch'
 import Tabs from './Tabs'
+import { ADD_TO_CART } from '../../../redux/actions/types'
+import { useState } from 'react'
 
-const ProductSingle = ({ products }) => {
+const ProductSingle = ({ products, cart }) => {
+    const dispatch = useDispatch();
     const { id } =  useParams();
     const product = products.filter(product => product._id === id)[0];
-    // useEffect(() => {
-        
-    // }, [])
-    return (
+    const [items, setItems] = useState(1);
+
+    function addToCart(items){
+        const isInCart = cart.filter(item => item.product._id === product._id);
+        if(isInCart.length > 0){
+            return;
+        }
+        dispatch({ type: ADD_TO_CART, payload: { product: product, totalCount: items } });
+    }
+    
+    return product ? (
         <section className='product-single-page'>
             <PageTitleArea title="Medical Mask" />
             <div className="container">
@@ -49,9 +59,9 @@ const ProductSingle = ({ products }) => {
                     <SizeSwitch />
                     <div className="product-add-to-cart">
                             <div className="input-counter">
-                                <input type="number" name="" id="" />
+                                <input type="number" name="" id="" value={items} onChange={(e) => setItems(e.target.value)} />
                             </div>
-                            <button className='btn'><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                            <button className='btn' onClick={() => addToCart(items)}><i class="fas fa-shopping-cart"></i> Add to Cart</button>
                         </div>
                 </div>
             </div>
@@ -59,11 +69,12 @@ const ProductSingle = ({ products }) => {
                 <Tabs />
             </div>
         </section>
-    )
+    ) : 'Loading'
 }
 
 const mapStateToProps = (state) => ({
-    products: state.product.products
+    products: state.product.products,
+    cart: state.cart.cart
 })
 
 export default  connect(mapStateToProps, null)(ProductSingle)

@@ -46,6 +46,7 @@ router.get('/api/products', async (req, res) => {
     }
 });
 
+
 // @ROUTE POST api/product
 // @DESC Add a Product
 // @ACCESS Private

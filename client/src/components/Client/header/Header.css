@@ -1,3 +1,10 @@
+header.header {
+  position: sticky;
+  width: 100%;
+  background-color: #fff;
+  top: 0;
+  z-index: 9;
+}
 header.header .lang-menu {
   display: inline-block;
   padding: 5px 8px;
@@ -98,4 +105,16 @@ header.header nav ul li ul {
 .searchbar input.form-control {
   box-shadow: 0 0 4px 2px #0000002b;
   margin-bottom: 2px;
+}
+.wishlist-cart-search span {
+  position: absolute;
+  background-color: var(--primary);
+  color: #fff;
+  width: 16px;
+  height: 16px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 100%;
+  top: 12px;
+  right: 13px;
 }

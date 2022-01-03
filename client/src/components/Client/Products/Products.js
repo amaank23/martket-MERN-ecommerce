@@ -5,14 +5,17 @@ import PageTitleArea from '../header/PageTitleArea'
 import ProductCard from './ProductCard'
 import Sidebar from './Sidebar'
 
-const Products = ({ products }) => {
-    
+const Products = ({ products, categories }) => {
+    const { search } = useLocation();
+    const categoryQueryString = new URLSearchParams(search);
     const totalItemsToShow = 3;
     const [paginationBtns, setPaginationBtns] = useState(1);
     const [initialPosition, setInitialPosition] = useState(0);
     const [finalPosition, setFinalPosition] = useState(totalItemsToShow);
+    const productData = categoryQueryString.get('category_id') ? products.filter(item => item.category === categoryQueryString.get('category_id')) : [...products];
     useEffect(() => {
-        setPaginationBtns(Math.ceil(products.length / totalItemsToShow));
+        setPaginationBtns(Math.ceil(productData.length / totalItemsToShow));
+        console.log();
     }, [products])
 
     function changePage(num){
@@ -32,27 +35,18 @@ const Products = ({ products }) => {
         <section className='products-page'>
             <PageTitleArea title={"Products Page"} />
             <div className="container">
-                <Sidebar />
+                <Sidebar data={categories} />
                 <div className="products-products-page">
                     <div className="sorting-div">
                         <div className="result-count">
-                            <p>We found 9 products available for you</p>
-                        </div>
-                        <div className="sort-select">
-                            <span>Sort By: </span>
-                            <select name="" id="">
-                                <option value="">Default</option>
-                                <option value=""></option>
-                                <option value=""></option>
-                                <option value=""></option>
-                            </select>
+                            <p>We found { productData.length } products available for you</p>
                         </div>
 
                     </div>
                     <div className="products-container">    
-                        {products.slice(initialPosition, finalPosition).map((product, index) => (
+                        {productData.length > 0 ? productData.slice(initialPosition, finalPosition).map((product, index) => (
                             <ProductCard key={index} product={product} />
-                        ))}
+                        )) : 'No Products Found'}
                     </div>
                     <div className="pagination">
                         <div className="btns-container">
@@ -67,7 +61,7 @@ const Products = ({ products }) => {
                                 ))}
                             </div>
                             <span className='next-page'>
-                                <button onClick={nextPage} disabled={finalPosition >= products.length}>
+                                <button onClick={nextPage} disabled={finalPosition >= productData.length}>
                                     
                                 <i class="fas fa-forward"></i>
                                 </button>
@@ -80,6 +74,7 @@ const Products = ({ products }) => {
     )
 }
 const mapStateToProps = state => ({
-    products: state.product.products
+    products: state.product.products,
+    categories: state.categories.categories
 })
 export default connect(mapStateToProps, null)(Products) 

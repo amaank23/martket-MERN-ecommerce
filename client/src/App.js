@@ -1,11 +1,19 @@
+import { useEffect } from 'react'
+import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AdminLogin from './components/Admin/AdminAuth/AdminLogin';
 import AdminPanel from './components/Admin/AdminPanel/AdminPanel';
 import ClientView from './components/Client/ClientView';
 import Home from './components/Client/Home/Home';
 import PrivateRoute from './components/PrivateRoute';
+import { getProduct } from './redux/actions/products';
+import { getCategories } from './redux/actions/category'
 
-function App() {
+function App({ getProduct, getCategories }) {
+  useEffect(() => {
+    getProduct();
+    getCategories();
+}, [])
   return (
     <Router>
       <Switch>
@@ -15,16 +23,10 @@ function App() {
           <PrivateRoute path='/admin'>
                 <AdminPanel />
           </PrivateRoute>
-          {/* <Route exact path="/">
-                <Home />
-          </Route>
-          <Route path="/products">
-              
-            </Route>  */}
             <ClientView />
       </Switch>
     </Router>
   );
 }
 
-export default App;
+export default connect(null, { getProduct, getCategories })(App);

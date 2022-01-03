@@ -1,8 +1,15 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import LangMenu from './LangMenu'
+import { logoutCustomer } from '../../../redux/actions/customer'
+import { connect } from 'react-redux'
 
-const TopBar = () => {
+const TopBar = ({ logoutCustomer }) => {
+    const isAuthenticated = useSelector(state => state.clientAuth.isAuthenticated);
+
+    function logout(){
+        logoutCustomer();
+    }
     return (
         <section className="topbar-sec">
             <div className="container">
@@ -14,8 +21,10 @@ const TopBar = () => {
                     
                 </div>
                 <div className="top-2">
-                    <LangMenu items={[['English', 'uk'], ['German', 'de'], ['French', 'fr']]} />
                     <span style={{padding: '0 9px'}}><Link to="/auth">My Account</Link></span>
+                    {isAuthenticated && (
+                        <button className='btn' style={{ fontSize: '16px', padding: '5px 10px' }} onClick={logout}>Logout</button>
+                    )}
                 </div>
                 </div>
             </div>
@@ -23,4 +32,4 @@ const TopBar = () => {
     )
 }
 
-export default TopBar
+export default connect(null, { logoutCustomer })(TopBar)

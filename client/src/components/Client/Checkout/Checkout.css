@@ -11,3 +11,12 @@ section.checkout-page .container {
   padding-top: 35px;
   padding-bottom: 73px;
 }
+.order-placed {
+  width: 100%;
+  background-color: #68a449;
+  text-align: center;
+  padding: 11px 0;
+  color: #fff;
+  font-weight: bold;
+  margin: 17px 0;
+}
