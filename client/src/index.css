@@ -389,3 +389,35 @@ table {
   border: 1px solid #dee2e6;
   padding: 13px 26px;
 }
+
+@media only screen and (max-width: 1175px) {
+  section.new-arrivals.home .new-arrival-products-container .product-card,
+  .products-container .product-card {
+    flex: 0 0 50%;
+  }
+  section.category-section.home .cat-container {
+    justify-content: center !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  section.new-arrivals.home .new-arrival-products-container .product-card,
+  .products-container .product-card {
+    flex: 0 0 100%;
+  }
+  section.product-single-page .container {
+    flex-direction: column;
+  }
+  section.product-single-page .container .product-gallery {
+    flex-basis: 100%;
+  }
+  section.product-single-page .container .product-info {
+    flex-basis: 100%;
+  }
+  section.category-section.home .cat-container {
+    justify-content: center !important;
+  }
+  .form-container .login-form,
+  .form-container .register-form {
+    flex-basis: 100% !important;
+  }
+}
