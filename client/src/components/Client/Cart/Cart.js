@@ -15,6 +15,7 @@ const Cart = ({ setCartVisibleToFalse }) => {
     useEffect(() => {
         carts.map(cart => {
             setSubTotal(prevVal => prevVal + cart.product.price);
+            return;
         })
         let total = 0;
         for(var product of carts){

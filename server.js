@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const path = require('path')
 
 
 
@@ -11,8 +12,20 @@ connectDB();
 // init Middleware
 app.use(express.json({ extended: false }))
 
-app.get('/', (req, res) => res.send('API Running'));
 
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'))
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', ))
+    })
+}
+
+// app.use(express.static('client/build'))
+
+// app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', ))
+// })
 // DEFINE ROUTES
 app.use(require('./routes/auth'));
 app.use(require('./routes/customers'));

@@ -65,9 +65,9 @@ const ProductSingle = ({ products, cart }) => {
                         </div>
                 </div>
             </div>
-            <div className="container">
+            {/* <div className="container">
                 <Tabs />
-            </div>
+            </div> */}
         </section>
     ) : 'Loading'
 }

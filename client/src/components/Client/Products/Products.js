@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import PageTitleArea from '../header/PageTitleArea'
 import ProductCard from './ProductCard'
 import Sidebar from './Sidebar'
@@ -14,9 +14,10 @@ const Products = ({ products, categories }) => {
     const [finalPosition, setFinalPosition] = useState(totalItemsToShow);
     const productData = categoryQueryString.get('category_id') ? products.filter(item => item.category === categoryQueryString.get('category_id')) : [...products];
     useEffect(() => {
+        setInitialPosition(0)
+        setFinalPosition(totalItemsToShow)
         setPaginationBtns(Math.ceil(productData.length / totalItemsToShow));
-        console.log();
-    }, [products])
+    }, [productData.length])
 
     function changePage(num){
         const position = totalItemsToShow * (num - 1);

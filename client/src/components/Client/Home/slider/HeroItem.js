@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeroItem = ({ item }) => {
     return (
@@ -16,7 +17,15 @@ const HeroItem = ({ item }) => {
                 </div>
                 <div className="cta">
                     <span className='slider-cta'>
-                        <button className='btn'>Shop Now</button>
+                        <Link to={'/products'} style={{
+                                backgroundColor: 'var(--primary)',
+                                color: '#fff',
+                                border: 'none',
+                                padding: '10px 29px',
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                
+                        }}>Shop Now</Link>
                     </span>
                     <span className='slider-price'>${ item.price }</span>
                 </div>

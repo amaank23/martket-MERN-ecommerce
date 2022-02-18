@@ -76,11 +76,15 @@ header.header nav ul li {
 header.header nav .wishlist-cart-search i {
   font-size: 25px;
 }
-header.header nav ul li a {
+header.header nav ul li a,
+header.header nav ul li a,
+button {
   transition: color 0.5s;
 }
-header.header nav ul li a:hover {
+header.header nav ul li a:hover,
+header.header nav ul li button:hover {
   color: var(--primary);
+  cursor: pointer;
 }
 .page-title-area {
   width: 100%;
@@ -117,4 +121,8 @@ header.header nav ul li ul {
   border-radius: 100%;
   top: 12px;
   right: 13px;
+}
+header.header nav .wishlist-cart-search button {
+  background: transparent;
+  border: none;
 }
