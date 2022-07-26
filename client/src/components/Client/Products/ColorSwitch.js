@@ -1,12 +1,13 @@
 import React from 'react'
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
-const ColorSwitch = () => {
+const ColorSwitch = ({ setSelectedColor }) => {
     const colorsItems = useRef([]);
     const colors = ['red', 'blue', 'orange', 'black', 'yellow'];
 
     function selectColor(e){
         const { id } = e.target;
+        setSelectedColor(id);
         colorsItems.current.map((item, index) => {
             if(item.classList.contains('active')){
                 item.classList.remove('active');

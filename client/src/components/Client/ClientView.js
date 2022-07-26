@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Route } from 'react-router';
 import Home from './Home/Home';
-import ClientLayout from '../Layout/ClientLayout';
 import Header from './header/Header';
 import Products from './Products/Products';
 import ClientAuth from './ClientAuth/ClientAuth';

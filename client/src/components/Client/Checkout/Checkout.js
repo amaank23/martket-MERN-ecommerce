@@ -6,11 +6,12 @@ import './Checkout.css'
 const Checkout = () => {
     const carts = useSelector(state => state.cart.cart);
     const [subTotal, setSubTotal] = useState(0);
-    const [shippingPrice, setShippingPrice] = useState(10.00);
+    const shippingPrice = 10.00;
     const [orderPlaced, setOrderPlaced] = useState(false);
     useEffect(() => {
         carts.map(cart => {
             setSubTotal(prevVal => prevVal + cart.product.price);
+            return;
         })
         let total = 0;
         for(var product of carts){
@@ -39,7 +40,7 @@ const Checkout = () => {
                             {carts.map((cart, index) => (
                             <tr key={index}>
                                 <td>{cart.product.productName}</td>
-                                <td>{cart.product.price * parseInt(cart.totalCount)}</td>
+                                <td>${cart.product.price * parseInt(cart.totalCount)}</td>
                             </tr>
                             ))}
                             <tr>

@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Header from '../header/Header'
 import BestSellings from './bestSellings/BestSellings'
 import Categories from './categories/Categories'
 import HeroSection from './HeroSection/HeroSection'

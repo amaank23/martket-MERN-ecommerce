@@ -12,6 +12,7 @@ const Cart = ({ setCartVisibleToFalse }) => {
     const [subTotal, setSubTotal] = useState(0);
     const history = useHistory();
 
+
     useEffect(() => {
         carts.map(cart => {
             setSubTotal(prevVal => prevVal + cart.product.price);
@@ -42,19 +43,48 @@ const Cart = ({ setCartVisibleToFalse }) => {
                     </button>
                 </div>
                 <div className="cart-content">
-                    {carts.map((cart, index) => (
-                        <div className="cart-item" key={index}>
-                            <span onClick={() => removeFromCart(cart.product._id)}>{cart.product.productName}</span>
-                            <span>{cart.product.price * parseInt(cart.totalCount)}</span>
-                        </div>
-                    ))}
+                    
+                        <table >
+                            <caption>My Cart</caption>
+                            <thead>
+                                <tr>
+                                <th scope="col" >Product Name</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price/Unit</th>
+                                <th scope="col">Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {carts.map((cart, index) => (
+                                <tr  key={index}>
+                                <td data-label="Product Name">{cart.product.productName}</td>
+                                <td data-label="Size">{cart.attributes.size}</td>
+                                <td data-label="Color">{cart.attributes.color}</td>
+                                <td data-label="Quantity">{cart.totalCount}</td>
+                                <td data-label="Price">${cart.product.price}</td>
+                                <td data-label="Total">${cart.product.price * parseInt(cart.totalCount)}</td>
+                                <td><button className='removeFromCart' onClick={() => removeFromCart(cart.id)}>Remove from Cart</button></td>
+                                </tr>
+
+                                ))}
+
+                                <tr>
+                                    <td>Subtotal</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>${subTotal}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    
                    
                 </div>
-                <div className="cart-subtotal">
-                    <span>Subtotal</span>
-                    <span className="subtotal">${subTotal}</span>
-                </div>
-                <div className="cart-btn">
+                <div className="cart-btn" style={{ marginTop: 20 }}>
                     <button className='form-control btn' onClick={redirectToCheckout}>Proceed To Checkout</button>
                 </div>
             </div>

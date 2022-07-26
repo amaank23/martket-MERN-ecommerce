@@ -15,7 +15,7 @@ export default function cartReducer(state = initialState, action){
             }
         case REMOVE_FROM_CART:
             // get product id in the payload
-            const newCart = state.cart.filter(item => item.product._id !== payload.id);
+            const newCart = state.cart.filter(item => item.id !== payload.id);
             localStorage.setItem("cart", JSON.stringify([...newCart]));
             return {
                 cart: [...newCart]

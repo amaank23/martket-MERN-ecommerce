@@ -1,12 +1,11 @@
 import { connect, useDispatch } from 'react-redux'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import PageTitleArea from '../header/PageTitleArea'
 import Slider from '../Home/slider/Slider'
 import SliderItems from '../Home/slider/SliderItems'
 import ColorSwitch from './ColorSwitch'
 import SizeSwitch from './SizeSwitch'
-import Tabs from './Tabs'
 import { ADD_TO_CART } from '../../../redux/actions/types'
 import { useState } from 'react'
 
@@ -15,13 +14,14 @@ const ProductSingle = ({ products, cart }) => {
     const { id } =  useParams();
     const product = products.filter(product => product._id === id)[0];
     const [items, setItems] = useState(1);
+    const [selectedColor, setSelectedColor] = useState('red');
+    const [selectedSize, setSelectedSize] = useState('XS');
+
+
 
     function addToCart(items){
-        const isInCart = cart.filter(item => item.product._id === product._id);
-        if(isInCart.length > 0){
-            return;
-        }
-        dispatch({ type: ADD_TO_CART, payload: { product: product, totalCount: items } });
+        const cartId = Math.floor(Math.random() * Math.floor(Math.random() * Date.now()));
+        dispatch({ type: ADD_TO_CART, payload: {id: cartId, product: product, totalCount: items, attributes: { size: selectedSize, color: selectedColor } } });
     }
     
     return product ? (
@@ -55,8 +55,8 @@ const ProductSingle = ({ products, cart }) => {
                             <li><span>Product Type: </span>Medical</li>
                         </ul>
                     </div>
-                    <ColorSwitch />
-                    <SizeSwitch />
+                    <ColorSwitch  setSelectedColor={setSelectedColor} />
+                    <SizeSwitch setSelectedSize={setSelectedSize} />
                     <div className="product-add-to-cart">
                             <div className="input-counter">
                                 <input type="number" name="" id="" value={items} onChange={(e) => setItems(e.target.value)} />

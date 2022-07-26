@@ -1,11 +1,12 @@
 import React, { useRef } from 'react'
 
-const SizeSwitch = () => {
+const SizeSwitch = ({ setSelectedSize }) => {
     const SizesItems = useRef([]);
     const sizes = ['XS', 'S', 'M', 'L', 'XL'];
 
     function selectSize(e){
         const { id } = e.target;
+        setSelectedSize(id);
         SizesItems.current.map((item, index) => {
             if(item.classList.contains('active')){
                 item.classList.remove('active');
